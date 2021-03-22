@@ -1,10 +1,10 @@
 import { DefaultTheme } from "styled-components";
 
 const theme: DefaultTheme = {
-  basicWidth: "320px",
+  basicWidth: "1200px",
 
   color: {
-    main: "#1c1f25",
+    main: "#ff3478",
     sub: "#fff"
   }
 };
