@@ -2,6 +2,7 @@ import { DefaultTheme } from "styled-components";
 
 const theme: DefaultTheme = {
   basicWidth: "1200px",
+  wrapWidth: "1200px",
 
   color: {
     main: "#ff3478",
