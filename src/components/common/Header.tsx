@@ -6,7 +6,7 @@ const HeaderComponent = () => {
     <Header>
       <Wrap>
         <Container>
-          <Logo>kingsjw #</Logo>
+          <Logo>kingsjw#</Logo>
           <Menu>
             <MenuItem>
               <NavLink
@@ -37,7 +37,9 @@ const Wrap = styled.div`
   height: 80px;
   border-bottom: 1px solid #f2f2f2;
   position: fixed;
+  background-color: #fff;
   top: 0;
+  z-index: 1;
 `;
 
 const Container = styled.div`
