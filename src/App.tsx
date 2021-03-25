@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 import { theme } from './assets/styles/theme'
 import { ThemeProvider } from 'styled-components';
 import Header from './components/common/Header';
+import Home from './pages/Home';
 
 const App = () => {
   return (
@@ -10,7 +11,7 @@ const App = () => {
         <Header/>
         <Switch>
           <Route path='/'>
-            <div className="App"></div>
+            <Home/>
           </Route>
           <Redirect path='*' to='/'/>
         </Switch>
