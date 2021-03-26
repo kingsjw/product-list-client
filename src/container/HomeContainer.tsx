@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { getRecommendProductApi } from '../api/api';
 import ProductList from '../components/product/ProductList';
 
-const ProductContainer = () => {
+const HomeContainer = () => {
   const [productList, setProductList] = useState<any[]>([]);
   useEffect(() => {
     getRecommendProductApi().then(({ data }: any) => {
@@ -13,9 +13,9 @@ const ProductContainer = () => {
   return (
     <ProductList
       title={ "kingsjw 추천 상품" }
-      productList={productList}
+      productList={ productList }
     />
   );
 };
 
-export default ProductContainer;
+export default HomeContainer;
