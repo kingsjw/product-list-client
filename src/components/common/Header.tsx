@@ -10,7 +10,7 @@ const HeaderComponent = () => {
           <Menu>
             <MenuItem>
               <NavLink
-                to='/products'
+                to='/product'
                 activeClassName='active'
               >상품목록</NavLink>
             </MenuItem>
