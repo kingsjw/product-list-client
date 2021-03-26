@@ -6,7 +6,11 @@ const HeaderComponent = () => {
     <Header>
       <Wrap>
         <Container>
-          <Logo>kingsjw#</Logo>
+          <Logo>
+            <NavLink
+              to='/'
+            >kingsjw#</NavLink>
+          </Logo>
           <Menu>
             <MenuItem>
               <NavLink
@@ -49,6 +53,7 @@ const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   margin: 0 auto;
+  padding: 0 10px;
 `;
 
 const Logo = styled.div`
@@ -56,6 +61,10 @@ const Logo = styled.div`
   font-weight: bold;
   color: #000;
   cursor: pointer;
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 `;
 
 const Menu = styled.ul`
