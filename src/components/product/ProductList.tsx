@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import ProductItem from './ProductItem';
+import { Dispatch, SetStateAction } from "react";
+import Spinner from '../common/Spinner';
 
 interface listDataType {
   id: string,
@@ -12,11 +14,14 @@ interface listDataType {
 
 interface PropsType {
   title?: string,
-  productList: listDataType[]
-}
+  productList: listDataType[],
+  setLoadTarget?: Dispatch<SetStateAction<null | HTMLDivElement>>,
+  isMaxPage?: boolean,
+  loading?: boolean
+};
 
 const ProductListComponent = (props: PropsType) => {
-  const { title, productList } =  props;
+  const { title, productList, setLoadTarget, isMaxPage, loading } =  props;
   return (
     <Wrapper>
       <Container>
@@ -36,6 +41,8 @@ const ProductListComponent = (props: PropsType) => {
           }
         </List>
       </Container>
+      { isMaxPage ? <LastMessage>모든 상품을 보여드렸습니다.</LastMessage> : <ListBottom ref={ isMaxPage ? null : setLoadTarget }/> }
+      { loading && <LoadingSpinner><Spinner/></LoadingSpinner> }
     </Wrapper>
   );
 };
@@ -43,11 +50,12 @@ const ProductListComponent = (props: PropsType) => {
 const Wrapper = styled.div`
   width: 100%;
   margin: 0 auto;
+  padding: 0 0 20px;
 `;
 
 const Container = styled.div`
   width: ${ props => props.theme.wrapWidth };
-  margin: 24px auto;
+  margin: 10px auto;
 `;
 
 const Title = styled.div`
@@ -60,6 +68,24 @@ const List = styled.div`
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+`;
+
+const ListBottom = styled.div`
+  width: 100%;
+  height: 20px;
+`;
+
+const LastMessage = styled.div`
+  text-align: center;
+  font-size: 16px;
+  color: #ccc;
+  padding: 10px 0 30px;
+`;
+
+const LoadingSpinner = styled.div`
+  display: flex;
+  justify-content: center;
+  padding-bottom: 20px;
 `;
 
 export default ProductListComponent;

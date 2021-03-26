@@ -4,9 +4,12 @@ import ProductList from '../components/product/ProductList';
 
 const HomeContainer = () => {
   const [productList, setProductList] = useState<any[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
   useEffect(() => {
+    setLoading(true);
     getRecommendProductApi().then(({ data }: any) => {
       setProductList(data);
+      setLoading(false);
     });
   }, []);
 
@@ -14,6 +17,7 @@ const HomeContainer = () => {
     <ProductList
       title={ "kingsjw 추천 상품" }
       productList={ productList }
+      loading={ loading }
     />
   );
 };
