@@ -17,7 +17,6 @@ interface PropsType {
 
 const ProductListComponent = (props: PropsType) => {
   const { title, productList } =  props;
-  const width = `${Math.ceil(100 / productList.length) > 4 ? 25 : 100 / productList.length}%`; 
   return (
     <Wrapper>
       <Container>
@@ -31,7 +30,6 @@ const ProductListComponent = (props: PropsType) => {
                   title={title}
                   price={price}
                   coverImage={coverImage}
-                  width={width}
                 />
               )
             )

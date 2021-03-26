@@ -5,14 +5,13 @@ interface PropsType {
   id: string,
   title: string,
   price: number,
-  coverImage: string,
-  width: string
+  coverImage: string
 }
 
 const ProductItemComponent = (props: PropsType) => {
-  const { title, price, coverImage, width } = props;
+  const { title, price, coverImage } = props;
   return (
-    <Wrapper width={width}>
+    <Wrapper>
       <Image>
         <img src={coverImage} alt={title}/>
       </Image>
@@ -23,8 +22,8 @@ const ProductItemComponent = (props: PropsType) => {
   );
 };
 
-const Wrapper = styled.div<{ width: string }>`
-  width: ${ props => props.width };
+const Wrapper = styled.div`
+  width: 33.33%;
   padding: 0 10px;
   margin-bottom: 10px;
 `;
