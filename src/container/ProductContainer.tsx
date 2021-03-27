@@ -2,13 +2,14 @@ import { useEffect, useState, useCallback, useMemo } from 'react';
 import { getProductDataPaginationApi } from '../api/api';
 import ProductList from '../components/product/ProductList';
 import useInfinteScroll from '../helper/useInfinteScroll';
+import useStore from '../helper/useStore';
 
 const ProductContainer = () => {
-  const [productList, setProductList] = useState<any[]>([]);
-  const [pageState, setPageState] = useState<{ page: number, totalPage: number }>({
-    page: 1,
-    totalPage: 1,
-  });
+  const {
+    productStore,
+  } = useStore();
+  const { productList, pageState } = productStore;
+  
   const [loading, setLoading] = useState<boolean>(false);
   const [loadTarget, setLoadTarget] = useState<HTMLDivElement | null>(null);
 
@@ -16,13 +17,13 @@ const ProductContainer = () => {
     setLoading(true);
     const { data }: any = await getProductDataPaginationApi(req);
     const { contents, totalPage } = data;
-    setPageState({
+    productStore.setPageState({
       page: req.page,
       totalPage,
     });
-    setProductList((originProductListData) => [...originProductListData, ...contents]);
+    productStore.addProductList(contents);
     setLoading(false);
-  }, [setProductList, setPageState]);
+  }, [productStore]);
 
   useInfinteScroll({
     target: loadTarget,
