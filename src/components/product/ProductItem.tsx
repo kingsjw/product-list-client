@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import styled from 'styled-components';
 import { priceFormat } from '../../helper/util';
 
@@ -71,5 +72,5 @@ const Price = styled.div`
   padding: 16px 8px;
 `;
 
-export default ProductItemComponent;
+export default memo(ProductItemComponent);
 
