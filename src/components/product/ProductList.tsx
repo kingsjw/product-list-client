@@ -2,22 +2,14 @@ import styled from 'styled-components';
 import ProductItem from './ProductItem';
 import { Dispatch, SetStateAction } from "react";
 import Spinner from '../common/Spinner';
-
-interface listDataType {
-  id: string,
-  title: string,
-  price: number,
-  coverImage: string,
-  score: number,
-  availableCoupon?: boolean
-};
+import { ProductData } from '../../type/product';
 
 interface PropsType {
-  title?: string,
-  productList: listDataType[],
-  setLoadTarget?: Dispatch<SetStateAction<null | HTMLDivElement>>,
-  isMaxPage?: boolean,
-  loading?: boolean
+  title?: string;
+  productList: ProductData[];
+  setLoadTarget?: Dispatch<SetStateAction<null | HTMLDivElement>>;
+  isMaxPage?: boolean;
+  loading?: boolean;
 };
 
 const ProductListComponent = (props: PropsType) => {
