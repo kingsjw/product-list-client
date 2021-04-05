@@ -3,6 +3,4 @@ export interface ProductData {
   title: string;
   price: number;
   coverImage: string;
-  score: number;
-  availableCoupon?: boolean;
 };

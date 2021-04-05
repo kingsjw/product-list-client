@@ -4,6 +4,7 @@ import ProductList from '../components/product/ProductList';
 import useStore from '../helper/useStore';
 
 const HomeContainer = () => {
+  // TODO: mobx 제거하고 apollo client로 바꾸기
   const {
     homeStore,
   } = useStore();
