@@ -1,24 +1,26 @@
-import { useEffect, useState } from 'react';
-import { getRecommendProductApi } from '../api/api';
+import { gql } from '@apollo/client';
 import ProductList from '../components/product/ProductList';
-import useStore from '../helper/useStore';
+import { useProductRecommendQuery } from '../generated/graphql'
+
+const productRecommendQuery = gql`
+  query productRecommend {
+    productRecommendData {
+      products {
+        id
+        title
+        price
+        coverImage
+      }
+    }
+  }
+`;
 
 const HomeContainer = () => {
-  // TODO: mobx 제거하고 apollo client로 바꾸기
-  const {
-    homeStore,
-  } = useStore();
-  const { productList } = homeStore;
-  const [loading, setLoading] = useState<boolean>(false);
-  useEffect(() => {
-    if (productList && productList.length <= 0) {
-      setLoading(true);
-      getRecommendProductApi().then(({ data }: any) => {
-        homeStore.setProductList(data);
-        setLoading(false);
-      });
-    }
-  }, [homeStore, productList]);
+  const { data, loading } = useProductRecommendQuery({
+    query: productRecommendQuery,
+  });
+
+  const productList = data?.productRecommendData?.products || [];
 
   return (
     <ProductList

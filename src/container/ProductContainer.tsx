@@ -3,11 +3,11 @@ import { useState } from 'react';
 import ProductList from '../components/product/ProductList';
 import useInfinteScroll from '../helper/useInfinteScroll';
 import {
-  useProductListQueryQuery,
+  useProductListQuery,
 } from '../generated/graphql';
 
 const PRODUCT_QUERY = gql`
-  query productListQuery($page: Int) {
+  query productList($page: Int) {
     productData(page: $page) {
       products {
         id
@@ -22,7 +22,7 @@ const PRODUCT_QUERY = gql`
 `;
 
 const ProductContainer = () => {
-  const { data, loading, fetchMore } = useProductListQueryQuery({
+  const { data, loading, fetchMore } = useProductListQuery({
     query: PRODUCT_QUERY,
     variables: { page: 1 },
     notifyOnNetworkStatusChange: true,

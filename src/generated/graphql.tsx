@@ -47,6 +47,11 @@ export type ProductInput = {
   price: Scalars['Int'];
 };
 
+export type ProductRecommendResp = {
+  __typename?: 'ProductRecommendResp';
+  products?: Maybe<Array<Product>>;
+};
+
 export type ProductResp = {
   __typename?: 'ProductResp';
   products?: Maybe<Array<Product>>;
@@ -57,6 +62,7 @@ export type ProductResp = {
 export type Query = {
   __typename?: 'Query';
   productData?: Maybe<ProductResp>;
+  productRecommendData?: Maybe<ProductRecommendResp>;
 };
 
 
@@ -65,12 +71,26 @@ export type QueryProductDataArgs = {
 };
 
 
-export type ProductListQueryQueryVariables = Exact<{
+export type ProductRecommendQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type ProductRecommendQuery = (
+  { __typename?: 'Query' }
+  & { productRecommendData?: Maybe<(
+    { __typename?: 'ProductRecommendResp' }
+    & { products?: Maybe<Array<(
+      { __typename?: 'Product' }
+      & Pick<Product, 'id' | 'title' | 'price' | 'coverImage'>
+    )>> }
+  )> }
+);
+
+export type ProductListQueryVariables = Exact<{
   page?: Maybe<Scalars['Int']>;
 }>;
 
 
-export type ProductListQueryQuery = (
+export type ProductListQuery = (
   { __typename?: 'Query' }
   & { productData?: Maybe<(
     { __typename?: 'ProductResp' }
@@ -83,8 +103,47 @@ export type ProductListQueryQuery = (
 );
 
 
-export const ProductListQueryDocument = gql`
-    query productListQuery($page: Int) {
+export const ProductRecommendDocument = gql`
+    query productRecommend {
+  productRecommendData {
+    products {
+      id
+      title
+      price
+      coverImage
+    }
+  }
+}
+    `;
+
+/**
+ * __useProductRecommendQuery__
+ *
+ * To run a query within a React component, call `useProductRecommendQuery` and pass it any options that fit your needs.
+ * When your component renders, `useProductRecommendQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useProductRecommendQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useProductRecommendQuery(baseOptions?: Apollo.QueryHookOptions<ProductRecommendQuery, ProductRecommendQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<ProductRecommendQuery, ProductRecommendQueryVariables>(ProductRecommendDocument, options);
+      }
+export function useProductRecommendLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ProductRecommendQuery, ProductRecommendQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<ProductRecommendQuery, ProductRecommendQueryVariables>(ProductRecommendDocument, options);
+        }
+export type ProductRecommendQueryHookResult = ReturnType<typeof useProductRecommendQuery>;
+export type ProductRecommendLazyQueryHookResult = ReturnType<typeof useProductRecommendLazyQuery>;
+export type ProductRecommendQueryResult = Apollo.QueryResult<ProductRecommendQuery, ProductRecommendQueryVariables>;
+export const ProductListDocument = gql`
+    query productList($page: Int) {
   productData(page: $page) {
     products {
       id
@@ -99,29 +158,29 @@ export const ProductListQueryDocument = gql`
     `;
 
 /**
- * __useProductListQueryQuery__
+ * __useProductListQuery__
  *
- * To run a query within a React component, call `useProductListQueryQuery` and pass it any options that fit your needs.
- * When your component renders, `useProductListQueryQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useProductListQuery` and pass it any options that fit your needs.
+ * When your component renders, `useProductListQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useProductListQueryQuery({
+ * const { data, loading, error } = useProductListQuery({
  *   variables: {
  *      page: // value for 'page'
  *   },
  * });
  */
-export function useProductListQueryQuery(baseOptions?: Apollo.QueryHookOptions<ProductListQueryQuery, ProductListQueryQueryVariables>) {
+export function useProductListQuery(baseOptions?: Apollo.QueryHookOptions<ProductListQuery, ProductListQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<ProductListQueryQuery, ProductListQueryQueryVariables>(ProductListQueryDocument, options);
+        return Apollo.useQuery<ProductListQuery, ProductListQueryVariables>(ProductListDocument, options);
       }
-export function useProductListQueryLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ProductListQueryQuery, ProductListQueryQueryVariables>) {
+export function useProductListLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ProductListQuery, ProductListQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<ProductListQueryQuery, ProductListQueryQueryVariables>(ProductListQueryDocument, options);
+          return Apollo.useLazyQuery<ProductListQuery, ProductListQueryVariables>(ProductListDocument, options);
         }
-export type ProductListQueryQueryHookResult = ReturnType<typeof useProductListQueryQuery>;
-export type ProductListQueryLazyQueryHookResult = ReturnType<typeof useProductListQueryLazyQuery>;
-export type ProductListQueryQueryResult = Apollo.QueryResult<ProductListQueryQuery, ProductListQueryQueryVariables>;
+export type ProductListQueryHookResult = ReturnType<typeof useProductListQuery>;
+export type ProductListLazyQueryHookResult = ReturnType<typeof useProductListLazyQuery>;
+export type ProductListQueryResult = Apollo.QueryResult<ProductListQuery, ProductListQueryVariables>;
