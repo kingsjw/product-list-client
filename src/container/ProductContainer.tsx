@@ -37,7 +37,6 @@ const ProductContainer = () => {
     target: loadTarget,
     onIntersect: ([{ isIntersecting }] : any) => {
       if (isIntersecting && !loading && totalCount && products && totalCount > products.length) {
-        // TODO: apollo server에서 pagination query 만들어서 더 부른다
         fetchMore({
           variables: { page: (page || 1) + 1 },
         })
