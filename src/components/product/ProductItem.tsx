@@ -1,20 +1,25 @@
 import { memo } from 'react';
 import styled from 'styled-components';
 import { priceFormat } from '../../helper/util';
+import HeartButton from './HeartButton';
 
 interface PropsType {
   id: string,
   title: string,
   price: number,
-  coverImage: string
+  coverImage: string,
+  liked?: boolean
 }
 
 const ProductItemComponent = (props: PropsType) => {
-  const { title, price, coverImage } = props;
+  const { id, title, price, coverImage, liked } = props;
   return (
     <Wrapper>
       <Image>
         <img src={coverImage} alt={title}/>
+        <HeartButtonWrapper>
+          <HeartButton id={id} isActive={liked}/>
+        </HeartButtonWrapper>
       </Image>
       <Name>{ title }</Name>
       <Divider><hr/></Divider>
@@ -34,6 +39,7 @@ const Image = styled.div`
   overflow: hidden;
   border-radius: 6px;
   position: relative;
+  -webkit-mask-image: radial-gradient(rgb(255, 255, 255), rgb(0, 0, 0));
   img {
     width: 100%;
     height: 100%;
@@ -42,12 +48,17 @@ const Image = styled.div`
     left: 0;
     object-fit: cover;
     vertical-align: middle;
-    transition: transform .3s ease;
     cursor: pointer;
     &:hover {
       transform: scale(1.07);
     }
   }
+`;
+
+const HeartButtonWrapper = styled.div`
+  position: absolute;
+  top: 16px;
+  right: 16px;
 `;
 
 const Name = styled.div`
