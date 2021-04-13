@@ -1,8 +1,10 @@
 import { createGlobalStyle } from "styled-components";
 import { normalize } from "styled-normalize";
+import nomaliezCss from "./nomalizeCSS";
 
 export const GlobalStyle = createGlobalStyle`
   ${normalize}
+  ${nomaliezCss}
   
   html,
   body {
