@@ -39,7 +39,7 @@ const Image = styled.div`
   overflow: hidden;
   border-radius: 6px;
   position: relative;
-  -webkit-mask-image: radial-gradient(rgb(255, 255, 255), rgb(0, 0, 0));
+  mask-image: radial-gradient(rgb(255, 255, 255), rgb(0, 0, 0));
   img {
     width: 100%;
     height: 100%;
