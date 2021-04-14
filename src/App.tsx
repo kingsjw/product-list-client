@@ -2,8 +2,8 @@ import { ApolloProvider } from '@apollo/client';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { theme } from './assets/styles/theme'
 import { ThemeProvider } from 'styled-components';
-import Header from './components/common/Header';
-import NotFound from './components/common/NotFound';
+import Header from './views/common/Header';
+import NotFound from './views/common/NotFound';
 import Home from './pages/Home';
 import Product from './pages/Product';
 import { createApolloClient } from "./core/createApolloClient";

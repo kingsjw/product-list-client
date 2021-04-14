@@ -1,4 +1,4 @@
-import ProductContainer from '../container/ProductContainer';
+import ProductContainer from '../view-controllers/ProductContainer';
 
 const ProductPage = () => {
   return (

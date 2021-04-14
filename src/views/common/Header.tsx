@@ -18,12 +18,6 @@ const HeaderComponent = () => {
                 activeClassName='active'
               >상품목록</NavLink>
             </MenuItem>
-            <MenuItem>
-              <NavLink
-                to='/cart'
-                activeClassName='active'
-              >장바구니</NavLink>
-            </MenuItem>
           </Menu>
         </Container>
       </Wrap>

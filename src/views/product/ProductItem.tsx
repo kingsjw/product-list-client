@@ -49,9 +49,6 @@ const Image = styled.div`
     object-fit: cover;
     vertical-align: middle;
     cursor: pointer;
-    &:hover {
-      transform: scale(1.07);
-    }
   }
 `;
 
