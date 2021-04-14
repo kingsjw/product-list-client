@@ -1,4 +1,4 @@
-# React + Type script + Apollo Client를 사용해서 리스트 페이지네이션 기능을 만들어보자
+# React + Type script + Apollo Client를 사용해서 infinity scroll을 만들어보자
 
 ## 페이지 구성
 - 홈
