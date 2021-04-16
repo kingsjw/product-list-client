@@ -4,4 +4,5 @@ export interface ProductData {
   title: string
   price: number
   coverImage: string
+  liked?: boolean
 };

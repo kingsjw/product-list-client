@@ -11,14 +11,14 @@ interface PropsType {
   liked?: boolean
 }
 
-const ProductItemComponent = (props: PropsType) => {
+const ProductItemComponent = memo((props: PropsType) => {
   const { id, title, price, coverImage, liked } = props;
   return (
     <Wrapper>
       <Image>
         <img src={coverImage} alt={title}/>
         <HeartButtonWrapper>
-          <HeartButton id={id} isActive={liked}/>
+          <HeartButton id={id} liked={liked}/>
         </HeartButtonWrapper>
       </Image>
       <Name>{ title }</Name>
@@ -26,7 +26,7 @@ const ProductItemComponent = (props: PropsType) => {
       <Price>{ priceFormat(price) }원</Price>
     </Wrapper>
   );
-};
+});
 
 const Wrapper = styled.div`
   width: 33.33%;

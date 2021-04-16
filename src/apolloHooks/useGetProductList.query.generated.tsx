@@ -18,7 +18,7 @@ export type ProductListQuery = (
     & Pick<Types.ProductResp, 'page' | 'totalCount'>
     & { readonly products?: Types.Maybe<ReadonlyArray<(
       { readonly __typename?: 'Product' }
-      & Pick<Types.Product, 'id' | 'title' | 'price' | 'coverImage'>
+      & Pick<Types.Product, 'id' | 'title' | 'price' | 'coverImage' | 'liked'>
     )>> }
   )> }
 );
@@ -32,6 +32,7 @@ export const ProductListDocument = gql`
       title
       price
       coverImage
+      liked
     }
     page
     totalCount

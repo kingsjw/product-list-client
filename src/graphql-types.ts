@@ -19,13 +19,18 @@ export enum CacheControlScope {
   PRIVATE = 'PRIVATE'
 }
 
+export type LikedResp = {
+  readonly __typename?: 'LikedResp';
+  readonly liked?: Maybe<Scalars['Boolean']>;
+};
+
 export type Mutation = {
   readonly __typename?: 'Mutation';
-  readonly addCart?: Maybe<Status>;
+  readonly likePost?: Maybe<LikedResp>;
 };
 
 
-export type MutationaddCartArgs = {
+export type MutationlikePostArgs = {
   productId?: Maybe<Scalars['String']>;
 };
 
@@ -35,6 +40,7 @@ export type Product = {
   readonly title: Scalars['String'];
   readonly coverImage: Scalars['String'];
   readonly price: Scalars['Int'];
+  readonly liked: Scalars['Boolean'];
 };
 
 export type ProductRecommendResp = {
@@ -58,10 +64,5 @@ export type Query = {
 
 export type QueryproductDataArgs = {
   page?: Maybe<Scalars['Int']>;
-};
-
-export type Status = {
-  readonly __typename?: 'Status';
-  readonly code: Scalars['String'];
 };
 

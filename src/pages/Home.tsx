@@ -1,4 +1,4 @@
-import HomeContainer from '../view-controllers/HomeContainer';
+import HomeContainer from '../containers/HomeContainer';
 
 const HomePage = () => {
   return (

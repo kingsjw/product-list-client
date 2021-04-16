@@ -15,7 +15,7 @@ export type ProductRecommendQuery = (
     { readonly __typename?: 'ProductRecommendResp' }
     & { readonly products?: Types.Maybe<ReadonlyArray<(
       { readonly __typename?: 'Product' }
-      & Pick<Types.Product, 'id' | 'title' | 'price' | 'coverImage'>
+      & Pick<Types.Product, 'id' | 'title' | 'price' | 'coverImage' | 'liked'>
     )>> }
   )> }
 );
@@ -29,6 +29,7 @@ export const ProductRecommendDocument = gql`
       title
       price
       coverImage
+      liked
     }
   }
 }

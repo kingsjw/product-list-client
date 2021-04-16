@@ -20,13 +20,14 @@ const ProductListComponent = (props: PropsType) => {
         <Title>{ title }</Title>
         <List>
           {
-            productList.map(({ id, title, price, coverImage }) => (
+            productList.map(({ id, title, price, coverImage, liked }) => (
                 <ProductItem
                   key={id}
                   id={id}
                   title={title}
                   price={price}
                   coverImage={coverImage}
+                  liked={liked}
                 />
               )
             )

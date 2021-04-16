@@ -1,4 +1,5 @@
 import { gql } from '@apollo/client';
+import { useEffect } from 'react';
 import {
   useProductRecommendQuery,
 } from './useGetProductRecommend.query.generated';
@@ -11,6 +12,7 @@ export const PRODUCT_RECOMMEND_QUERY = gql`
         title
         price
         coverImage
+        liked
       }
     }
   }

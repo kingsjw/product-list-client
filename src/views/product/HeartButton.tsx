@@ -1,18 +1,25 @@
-import { gql } from '@apollo/client';
 import { ReactComponent as HeartSVG } from '../../assets/svg/heart.svg';
 import styled from "styled-components";
-
+import { useLikePost } from '../../apolloHooks/useLikePost.mutation';
+import Spinner from '../..//components/common/Spinner';
 interface PropsType {
   id: string,
-  isActive?: boolean
+  liked?: boolean
 }
 
-const HeartButtonComponent = ({ isActive = false } : PropsType) => {
+const HeartButtonComponent = ({ id, liked = false } : PropsType) => {
+  const { likePost, loading } = useLikePost(id);
   return (
-    <HeartBtn isActive={isActive}>
-      <SvgBtn>
-        <HeartSVG/>
-      </SvgBtn>
+    <HeartBtn isActive={liked}>
+      {
+        loading
+        ?
+          <Spinner/>
+        :
+          <SvgBtn>
+            <HeartSVG/>
+          </SvgBtn>
+      }
     </HeartBtn>
   );
 };
