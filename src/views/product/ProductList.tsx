@@ -1,9 +1,7 @@
 import styled from 'styled-components';
 import ProductItem from './ProductItem';
 import { Dispatch, SetStateAction } from "react";
-import Spinner from '../../components/common/Spinner';
 import { ProductData } from '../../type/product';
-
 interface PropsType {
   title?: string
   productList: readonly ProductData[]
@@ -13,7 +11,7 @@ interface PropsType {
 };
 
 const ProductListComponent = (props: PropsType) => {
-  const { title, productList, setLoadTarget, isMaxPage, loading } =  props;
+  const { title, productList, setLoadTarget, isMaxPage } =  props;
   return (
     <Wrapper>
       <Container>
@@ -34,8 +32,7 @@ const ProductListComponent = (props: PropsType) => {
           }
         </List>
       </Container>
-      { isMaxPage ? <LastMessage>모든 상품을 보여드렸습니다.</LastMessage> : <ListBottom ref={ isMaxPage ? null : setLoadTarget }/> }
-      { loading && <LoadingSpinner><Spinner/></LoadingSpinner> }
+      <ListBottom ref={ isMaxPage ? null : setLoadTarget }/>
     </Wrapper>
   );
 };
@@ -66,19 +63,6 @@ const List = styled.div`
 const ListBottom = styled.div`
   width: 100%;
   height: 20px;
-`;
-
-const LastMessage = styled.div`
-  text-align: center;
-  font-size: 16px;
-  color: #ccc;
-  padding: 10px 0 30px;
-`;
-
-const LoadingSpinner = styled.div`
-  display: flex;
-  justify-content: center;
-  padding-bottom: 20px;
 `;
 
 export default ProductListComponent;

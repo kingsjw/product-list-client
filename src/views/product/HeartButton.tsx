@@ -2,13 +2,18 @@ import { ReactComponent as HeartSVG } from '../../assets/svg/heart.svg';
 import styled from "styled-components";
 import { useLikePost } from '../../apolloHooks/useLikePost.mutation';
 import Spinner from '../..//components/common/Spinner';
+import { useCallback } from 'react';
 interface PropsType {
   id: string,
   liked?: boolean
 }
 
 const HeartButtonComponent = ({ id, liked = false } : PropsType) => {
+  // TODO: 한번 unmount 된 후에  Can't perform a React state update on an unmounted component.가 일어남
   const { likePost, loading } = useLikePost(id);
+  const handleClick = useCallback(async () => {
+    await likePost();
+  }, [likePost]);
   return (
     <HeartBtn isActive={liked}>
       {
@@ -16,7 +21,7 @@ const HeartButtonComponent = ({ id, liked = false } : PropsType) => {
         ?
           <Spinner/>
         :
-          <SvgBtn>
+          <SvgBtn onClick={ handleClick }>
             <HeartSVG/>
           </SvgBtn>
       }

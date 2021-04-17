@@ -1,5 +1,5 @@
 export interface ProductData {
-  __typename?: 'Product'
+  __typename?: any
   id: string
   title: string
   price: number

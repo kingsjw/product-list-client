@@ -4,9 +4,9 @@ import { priceFormat } from '../../helper/util';
 import HeartButton from './HeartButton';
 
 interface PropsType {
-  id: string,
-  title: string,
-  price: number,
+  id: string
+  title: string
+  price: number
   coverImage: string,
   liked?: boolean
 }

@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import ProductList from '../views/product/ProductList';
 import useInfinteScroll from '../helper/useInfinteScroll';
-import { useGetProductList } from '../apolloHooks/useGetProductList.query';
+import useGetProductList from '../apolloHooks/useGetProductList.query';
+import Spinner from '../components/common/Spinner';
+import styled from 'styled-components';
 
 const ProductContainer = () => {
   const { data, loading, fetchMore } = useGetProductList();
@@ -19,14 +21,23 @@ const ProductContainer = () => {
     },
   });
 
+  if (loading) {
+    return <LoadingSpinner><Spinner/></LoadingSpinner>;
+  }
   return (
     <ProductList
       title={ "상품 목록" }
       productList={ products }
-      loading={ loading }
       setLoadTarget={ setLoadTarget }
     />
   );
 };
+
+const LoadingSpinner = styled.div`
+  display: flex;
+  justify-content: center;
+  padding-bottom: 20px;
+`;
+
 
 export default ProductContainer;

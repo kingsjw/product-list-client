@@ -13,7 +13,6 @@ export function createApolloClient() {
 								if (!existing) return incoming;
 								const { products, ...rest } = incoming;
 								let result = rest;
-								console.log(result);
 								result.products = [...existing.products, ...products];
 								return result;
 							}
