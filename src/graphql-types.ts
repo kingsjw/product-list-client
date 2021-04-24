@@ -19,18 +19,13 @@ export enum CacheControlScope {
   PRIVATE = 'PRIVATE'
 }
 
-export type LikedResp = {
-  readonly __typename?: 'LikedResp';
-  readonly liked?: Maybe<Scalars['Boolean']>;
-};
-
 export type Mutation = {
   readonly __typename?: 'Mutation';
-  readonly likePost?: Maybe<LikedResp>;
+  readonly setLikeProduct?: Maybe<setLikeProductResp>;
 };
 
 
-export type MutationlikePostArgs = {
+export type MutationsetLikeProductArgs = {
   productId?: Maybe<Scalars['String']>;
 };
 
@@ -59,6 +54,7 @@ export type Query = {
   readonly __typename?: 'Query';
   readonly productData?: Maybe<ProductResp>;
   readonly productRecommendData?: Maybe<ProductRecommendResp>;
+  readonly likedProducts?: Maybe<getLikedListResp>;
 };
 
 
@@ -66,3 +62,14 @@ export type QueryproductDataArgs = {
   page?: Maybe<Scalars['Int']>;
 };
 
+
+export type getLikedListResp = {
+  readonly __typename?: 'getLikedListResp';
+  readonly status?: Maybe<Scalars['String']>;
+  readonly likedList?: Maybe<ReadonlyArray<Scalars['String']>>;
+};
+
+export type setLikeProductResp = {
+  readonly __typename?: 'setLikeProductResp';
+  readonly status?: Maybe<Scalars['String']>;
+};

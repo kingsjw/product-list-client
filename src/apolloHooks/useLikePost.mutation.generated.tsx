@@ -13,17 +13,17 @@ export type LikePostMutationVariables = Types.Exact<{
 
 export type LikePostMutation = (
   { readonly __typename?: 'Mutation' }
-  & { readonly likePost?: Types.Maybe<(
-    { readonly __typename?: 'LikedResp' }
-    & Pick<Types.LikedResp, 'liked'>
+  & { readonly setLikeProduct?: Types.Maybe<(
+    { readonly __typename?: 'setLikeProductResp' }
+    & Pick<Types.setLikeProductResp, 'status'>
   )> }
 );
 
 
 export const LikePostDocument = gql`
     mutation LikePost($productId: String) {
-  likePost(productId: $productId) {
-    liked
+  setLikeProduct(productId: $productId) {
+    status
   }
 }
     `;
