@@ -15,7 +15,10 @@ export type LikePostMutation = (
   { readonly __typename?: 'Mutation' }
   & { readonly setLikeProduct?: Types.Maybe<(
     { readonly __typename?: 'setLikeProductResp' }
-    & Pick<Types.setLikeProductResp, 'status'>
+    & { readonly product?: Types.Maybe<(
+      { readonly __typename?: 'Product' }
+      & Pick<Types.Product, 'id' | 'liked'>
+    )> }
   )> }
 );
 
@@ -23,7 +26,10 @@ export type LikePostMutation = (
 export const LikePostDocument = gql`
     mutation LikePost($productId: String) {
   setLikeProduct(productId: $productId) {
-    status
+    product {
+      id
+      liked
+    }
   }
 }
     `;

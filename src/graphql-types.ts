@@ -54,7 +54,6 @@ export type Query = {
   readonly __typename?: 'Query';
   readonly productData?: Maybe<ProductResp>;
   readonly productRecommendData?: Maybe<ProductRecommendResp>;
-  readonly likedProducts?: Maybe<getLikedListResp>;
 };
 
 
@@ -63,13 +62,7 @@ export type QueryproductDataArgs = {
 };
 
 
-export type getLikedListResp = {
-  readonly __typename?: 'getLikedListResp';
-  readonly status?: Maybe<Scalars['String']>;
-  readonly likedList?: Maybe<ReadonlyArray<Scalars['String']>>;
-};
-
 export type setLikeProductResp = {
   readonly __typename?: 'setLikeProductResp';
-  readonly status?: Maybe<Scalars['String']>;
+  readonly product?: Maybe<Product>;
 };
